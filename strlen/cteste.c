@@ -10,8 +10,7 @@ int main(void){
     printf("Enter a string: ");
     fgets(s, sizeof(s), stdin);
 
-    while(true){
-        if(*Ps == '\0') break;
+    while(*Ps != '\0'){
         *Ps++;
         len++;
     }
