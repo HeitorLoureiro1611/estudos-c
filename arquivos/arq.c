@@ -3,8 +3,6 @@
 
 int main(){
 
-    // nome do arquivo que eu quero utilizar (Facilitação de processo)
-    char nome[] = "Teste.txt";
     // String da menságem que eu pretendo Iniciar meu programa
     char msg[] = "Hello world!\n";
 
@@ -13,7 +11,7 @@ int main(){
     FILE *arq;
 
     // Arquivo sendo aberto com o nome desejado e a forma de manipulação
-    arq = fopen(nome,"w");
+    arq = fopen("Teste.txt","wr");
     // lidando com erros
     if (arq == NULL){
         // caso tenha um erro, printar essa mensagem
