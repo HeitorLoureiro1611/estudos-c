@@ -11,7 +11,7 @@ int main(){
     FILE *arq;
 
     // Arquivo sendo aberto com o nome desejado e a forma de manipulação
-    arq = fopen("Teste.txt","wr");
+    arq = fopen("Teste.txt","w");
     // lidando com erros
     if (arq == NULL){
         // caso tenha um erro, printar essa mensagem
