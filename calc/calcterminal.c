@@ -32,6 +32,7 @@ int main(int argc, char *argv[]){
         }
         case '-': {
             printf("O resultado é: %.1f\n",sub(n1,n2));
+            break;
         }
         case 'x': {
             printf("O resultado é: %.1f\n",mult(n1,n2));
