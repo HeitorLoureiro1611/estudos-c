@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 typedef struct
 {
@@ -41,27 +40,30 @@ void inserir(array_t* array, int num) // recebe o ponteiro da estrutura, e o num
 // exclui um item e redimensiona os items a frente dele 1 casa pra trás
 void pop(array_t *array, int indice)
 {
+    if (indice > array->tamanho || indice < 0){ // se o valor não for dentro do tamanho ele não vai retirar nada
+        return;
+    }
     array->dados[indice] = array->dados[array->tamanho+1];
     for (int i = indice; i < array->tamanho; i++){
-        array->dados[i] = array->dados[i+1];
+        array->dados[i] = array->dados[i+1]; // joga pra frente todos os valores depois do valor excluido
     }
-    array->tamanho--;
+    array->tamanho--; // reduz o tamanho total
 }
 
 int get(array_t *array, int indice)
 {
     // caso não exista esse indice, não retorna nada
     if (indice >= array->tamanho || indice < 0){
-        return (int)NULL;
+        return -1; // eu n gosto disso :(
     }else{
     // senão, retorna o indice encontrado naquela posição
-    return array->dados[indice];
+    return array->dados[indice]; // retorna o valor no indice especificado
     }
 }
 
 int main(void)
 {
-    array_t *array = criar();
+    array_t *array = criar(); // lembrar de liberar array->dados
 
     inserir(array, 10);
     inserir(array, 11);
@@ -70,6 +72,7 @@ int main(void)
     for (int i = 0; i < array->tamanho; i++){
         printf("%d -> %d\n",i, get(array, i));
     }
+
     pop(array, 1);
 
     printf("==================================\n");
