@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct
 {
@@ -37,6 +38,17 @@ void inserir(array_t* array, int num) // recebe o ponteiro da estrutura, e o num
     array->tamanho++; // adiciona 1 no tamanho da lista
 }
 
+void get(array_t *array, int indice)
+{
+    // caso não exista esse indice, não retorna nada
+    if (indice > array->tamanho || indice < 0){
+        return;
+    }else{
+    // senão, printa o indice encontrado naquela posição
+    printf("Indice: %d -> %d\n", indice, array->dados[indice]);
+    }
+}
+
 int main(void)
 {
     array_t *array = criar();
@@ -48,9 +60,9 @@ int main(void)
         printf("%d -> %d\n", i+1, array->dados[i]);
     }
 
+    get(array, 1);
+
     free(array->dados);
     free(array);
-    array->dados = NULL;
-    array = NULL;
     return 0;
 }
