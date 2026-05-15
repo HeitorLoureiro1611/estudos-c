@@ -38,14 +38,24 @@ void inserir(array_t* array, int num) // recebe o ponteiro da estrutura, e o num
     array->tamanho++; // adiciona 1 no tamanho da lista
 }
 
-void get(array_t *array, int indice)
+// exclui um item e redimensiona os items a frente dele 1 casa pra trás
+void pop(array_t *array, int indice)
+{
+    array->dados[indice] = array->dados[array->tamanho+1];
+    for (int i = indice; i < array->tamanho; i++){
+        array->dados[i] = array->dados[i+1];
+    }
+    array->tamanho--;
+}
+
+int get(array_t *array, int indice)
 {
     // caso não exista esse indice, não retorna nada
-    if (indice > array->tamanho || indice < 0){
-        return;
+    if (indice >= array->tamanho || indice < 0){
+        return (int)NULL;
     }else{
-    // senão, printa o indice encontrado naquela posição
-    printf("Indice: %d -> %d\n", indice, array->dados[indice]);
+    // senão, retorna o indice encontrado naquela posição
+    return array->dados[indice];
     }
 }
 
@@ -55,12 +65,17 @@ int main(void)
 
     inserir(array, 10);
     inserir(array, 11);
+    inserir(array, 12);
 
     for (int i = 0; i < array->tamanho; i++){
-        printf("%d -> %d\n", i+1, array->dados[i]);
+        printf("%d -> %d\n",i, get(array, i));
     }
+    pop(array, 1);
 
-    get(array, 1);
+    printf("==================================\n");
+    for (int i = 0; i < array->tamanho; i++){
+        printf("%d -> %d\n",i,  get(array, i));
+    }
 
     free(array->dados);
     free(array);
