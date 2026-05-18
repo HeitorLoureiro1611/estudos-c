@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//pilha é um tipo abstrato de dado e estrutura de dados baseado no princípio de Last In First Out
+// pilha é um tipo abstrato de dado e estrutura de dados baseado no princípio de Last In First Out (LIFO)
 
 typedef struct
 {
@@ -11,6 +11,7 @@ typedef struct
 
 } pilha_t;
 
+// inicialização de uma pilha
 pilha_t* cria()
 {
     pilha_t *pilha = malloc(sizeof(pilha_t));
@@ -20,8 +21,10 @@ pilha_t* cria()
     return pilha;
 }
 
+// push vai sempre colocar um novo valor no ultimo indice da pilha
 void push(pilha_t *pilha, int numero)
 {
+    //  caso a pilha fique cheia, dobra ela de tamanho
     if (pilha->tamanho == pilha->capacidade){
         int *tmp = realloc(pilha->dados, (pilha->capacidade*2)*sizeof(int));
         if (tmp == NULL){
@@ -33,6 +36,7 @@ void push(pilha_t *pilha, int numero)
         pilha->dados = tmp;
         pilha->capacidade*=2;
     }
+    // coloca o numero no ultimo item da lista e aumenta o tamanho dela
     pilha->dados[pilha->tamanho] = numero;
     pilha->tamanho++;
 }
@@ -40,6 +44,7 @@ void push(pilha_t *pilha, int numero)
 // remove sempre o ultimo indice da lista
 void pop(pilha_t *pilha)
 {
+    // se a lista estiver vazia, n reduz o tamanho de nada
     if(pilha->tamanho > 0){
         pilha->tamanho--;
     } else{
